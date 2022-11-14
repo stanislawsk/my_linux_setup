@@ -6,12 +6,8 @@
 # Python version to install
 VERSION="3.11.0"
 
-apt update
-# Install dependencies
-apt -y install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev
-
 # Install Python in the above version if not installed
-if ! python3.11 --version | grep -q $VERSION; then
+if ! [ -x "$(command -v python${VERSION:0:4})" ]; then
     # Download python source
     if ! [ -f Python-$VERSION.tar.xz ]; then
         wget https://www.python.org/ftp/python/$VERSION/Python-$VERSION.tar.xz
@@ -37,6 +33,6 @@ if [ -d "Python-$VERSION" ]; then
     rm -r "Python-$VERSION"
 fi
 # Upgrade pip
-python3.11 -m pip install --upgrade pip
+python${VERSION:0:4} -m pip install --upgrade pip
 # Install all pip packages from PIP_PACKAGES
-< PIP_PACKAGES xargs python3.11 -m pip install
+< PIP_PACKAGES xargs python${VERSION:0:4} -m pip install

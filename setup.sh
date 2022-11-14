@@ -17,7 +17,6 @@ if ! apt show software-properties-common | grep -q "Package: software-properties
 fi
 < APT_REPOSITORIES xargs apt-add-repository -y
 
-
 # Install all apt packages from APT_PACKAGES file
 < APT_PACKAGES xargs apt -y install
 
@@ -35,4 +34,13 @@ chmod 755 ~/.moc/config
 chsh -s $(which fish)
 # Install fisher and fisher plugins
 fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"
-fish -c "fisher install  ilancosman/tide@v5 jethrokuan/z jorgebucaran/autopair.fish PatrickF1/fzf.fish"
+fish -c "fisher install jethrokuan/z jorgebucaran/autopair.fish"
+# ilancosman/tide@v5 PatrickF1/fzf.fish
+
+# Change background to black solid color
+if [ -x "$(command -v gsettings)" ]; then
+    gsettings set org.gnome.desktop.background picture-uri ""
+    gsettings set org.gnome.desktop.background primary-color '#000000'
+fi
+
+echo 'Configuration complite!'
