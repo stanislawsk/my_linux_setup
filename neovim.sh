@@ -23,13 +23,16 @@ if [ -f nvim-linux64.deb ]; then
 fi
 
 # Remove Nvim configuration
-if [ -d /home/$SUDO_USER/.config/nvim ]; then
-    rm -r /home/$SUDO_USER/.config/nvim
-    rm -r /root/.config/nvim
+if [ -d $HOME/.config/nvim ]; then
+    rm -r $HOME/.config/nvim
 fi
 
 # Install AstroNvim and my own configuration from CONFIG_REPO
-git clone https://github.com/AstroNvim/AstroNvim /root/.config/nvim
-git clone https://github.com/$CONFIG_REPO.git /root/.config/nvim/lua/user
-cp -r /root/.config/nvim ~/.config/nvim
-runuser -l $SUDO_USER -c "nvim  --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'"
+git clone https://github.com/AstroNvim/AstroNvim $HOME/.config/nvim
+git clone https://github.com/$CONFIG_REPO.git $HOME/.config/nvim/lua/user
+if [[ "$SUDO_USER" ]];
+then
+    cp -r $HOME/.config/nvim /home/$SUDO_USER/.config/nvim
+    runuser -l $SUDO_USER -c "nvim  --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'"
+fi
+nvim  --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
