@@ -6,15 +6,17 @@
 # Name of public github repository with AstroNvim configuration
 CONFIG_REPO="stanislawsk/astronvim_config"
 
+# Install the required dependencies to compile the Python source code.
+apt update
+apt -y install wget git
+
 # Intall Neovim v0.8.0 if not installed
 if ! nvim -v | grep -q "NVIM v0.8.0"; then
     if ! [ -f nvim-linux64.deb ]; then
         wget https://github.com/neovim/neovim/releases/download/v0.8.0/nvim-linux64.deb
     fi
 
-    if sha256sum -c sum/nvim-linux64.deb.sha256sum; then
-        apt -y install ./nvim-linux64.deb
-    fi
+    apt -y install ./nvim-linux64.deb
 fi
 
 # Remove nvim-linux64.deb file
@@ -29,7 +31,7 @@ fi
 if [ -d /home/$SUDO_USER/.config/nvim ]; then
     rm -r /home/$SUDO_USER/.config/nvim
 fi
-# Install AstroNvim and my own configuration from CONFIG_REPO
+# Install AstroNvim and your own configuration from CONFIG_REPO
 git clone https://github.com/AstroNvim/AstroNvim $HOME/.config/nvim
 git clone https://github.com/$CONFIG_REPO.git $HOME/.config/nvim/lua/user
 if [[ "$SUDO_USER" ]]; then
@@ -37,3 +39,4 @@ if [[ "$SUDO_USER" ]]; then
     runuser -l $SUDO_USER -c "nvim  --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'"
 fi
 nvim  --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+nvim -v
