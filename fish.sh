@@ -13,14 +13,14 @@ apt -y install fish curl
 chsh -s $(which fish)
 
 # Download Nerd fonts
-if ! [ -f 3270.zip ]; then
-    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/3270.zip
+if ! [ -f CodeNewRoman.zip ]; then
+    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/CodeNewRoman.zip
 fi
 # Install Nerd fonts
-if [ -f 3270.zip ]; then
+if [ -f CodeNewRoman.zip ]; then
     pwd=$(pwd)
-    runuser -l $SUDO_USER -c "unzip $pwd/3270.zip -d ~/.fonts"
-    rm 3270.zip
+    runuser -l $SUDO_USER -c "unzip $pwd/CodeNewRoman.zip -d ~/.fonts"
+    rm CodeNewRoman.zip
 fi
 
 # Install fisher
