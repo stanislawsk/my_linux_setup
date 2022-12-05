@@ -6,17 +6,17 @@
 # Clone dot files from repository
 git clone https://github.com/stanislawsk/dotfiles.git /home/$SUDO_USER
 
-# # Install Python
-# bash python.sh
-# # Install Neovim
-# bash neovim.sh
-# # Install Fish
-# bash fish.sh
+# Install Python
+bash python.sh
+# Install Neovim
+bash neovim.sh
+# Install Fish
+bash fish.sh
 
-# # Change background to black solid color
-# if [ -x "$(command -v gsettings)" ]; then
-#     gsettings set org.gnome.desktop.background picture-uri ""
-#     gsettings set org.gnome.desktop.background primary-color '#000000'
-# fi
+# Change background to black solid color
+if [ -x "$(command -v gsettings)" ]; then
+    gsettings set org.gnome.desktop.background picture-uri ""
+    gsettings set org.gnome.desktop.background primary-color '#000000'
+fi
 
-# echo 'Configuration complite!'
+echo 'Configuration complite!'
