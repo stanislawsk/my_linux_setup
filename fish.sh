@@ -18,7 +18,8 @@ if ! [ -f 3270.zip ]; then
 fi
 # Install Nerd fonts
 if [ -f 3270.zip ]; then
-    unzip 3270.zip -d ~/.fonts
+    pwd=$(pwd)
+    runuser -l $SUDO_USER -c "unzip $pwd/3270.zip -d ~/.fonts"
     rm 3270.zip
 fi
 
