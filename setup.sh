@@ -18,6 +18,7 @@ bash fish.sh
 
 # Change background to black solid color
 if [ -x "$(command -v gsettings)" ]; then
+    gsettings set org.gnome.desktop.background picture-options none
     gsettings set org.gnome.desktop.background picture-uri ""
     gsettings set org.gnome.desktop.background primary-color '#000000'
 fi
