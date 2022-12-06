@@ -50,4 +50,6 @@ if [ -d "Python-$VERSION" ]; then
     rm -r "Python-$VERSION"
 fi
 
+pip install ptpython
+
 python -V && pip -V

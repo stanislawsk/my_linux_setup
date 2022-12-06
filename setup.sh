@@ -4,7 +4,10 @@
 #############################################################
 
 # Clone dot files from repository
-git clone https://github.com/stanislawsk/dotfiles.git /home/$SUDO_USER
+git clone https://github.com/stanislawsk/dotfiles.github
+cd dotfiles
+bash copy.sh
+cd ../
 
 # Install Python
 bash python.sh
